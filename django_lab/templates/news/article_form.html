@@ -1,0 +1,88 @@
+{% extends "news/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {% if form.instance.pk %}Edit Article{% else %}Write New Article{% endif %} - TechNews
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white">
+                <h2 class="mb-0">
+                    {% if form.instance.pk %}Edit Article{% else %}Write New Article{% endif %}
+                </h2>
+            </div>
+            <div class="card-body p-4">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    {{ form|crispy }}
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            {% if form.instance.pk %}Update Article{% else %}Publish Article{% endif %}
+                        </button>
+                        <a href="{% url 'news:article_list' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal (Only shown on delete page) -->
+{% if request.path|slice:"-7:" == "/delete" %}
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Article</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete "{{ object.title }}"?</p>
+                <p class="text-danger">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        deleteModal.show();
+    });
+</script>
+{% endif %}
+
+{% block extra_js %}
+<script>
+    // Auto-generate slug from title
+    document.addEventListener('DOMContentLoaded', function() {
+        const titleInput = document.querySelector('#id_title');
+        const slugInput = document.querySelector('#id_slug');
+        
+        if (titleInput && slugInput) {
+            titleInput.addEventListener('keyup', function() {
+                const title = titleInput.value;
+                const slug = title.toLowerCase()
+                    .replace(/[^\w\s-]/g, '')  // Remove special chars except whitespace and dash
+                    .replace(/\s+/g, '-')      // Replace whitespace with dash
+                    .replace(/-+/g, '-');      // Replace multiple dashes with single dash
+                
+                slugInput.value = slug;
+            });
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}

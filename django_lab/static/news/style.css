@@ -1,0 +1,154 @@
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+}
+
+a {
+    color: #0d6efd;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #0a58ca;
+}
+
+/* Navbar */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 0.75rem 1rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+/* Featured Article */
+.featured-article {
+    height: 450px;
+    position: relative;
+}
+
+.featured-img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.featured-placeholder {
+    height: 100%;
+    background-color: #e9ecef;
+}
+
+.featured-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.01) 100%);
+    padding: 2rem 1.5rem 1.5rem;
+}
+
+/* Article Cards */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-img-top.article-img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-img-top.article-placeholder {
+    height: 180px;
+    background-color: #e9ecef;
+}
+
+.category-card {
+    background-color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    color: #0d6efd;
+}
+
+/* Sections */
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #0d6efd;
+}
+
+/* Article Detail */
+.article-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.article-body p {
+    margin-bottom: 1.5rem;
+}
+
+/* Comments */
+.comments-section {
+    margin-top: 3rem;
+}
+
+/* Footer */
+footer {
+    margin-top: 4rem;
+    padding: 3rem 0;
+    background-color: #f8f9fa;
+}
+
+/* Responsiveness */
+@media (max-width: 767.98px) {
+    .featured-article {
+        height: 350px;
+    }
+
+    .card-img-top.article-img {
+        height: 160px;
+    }
+
+    .card-img-top.article-placeholder {
+        height: 160px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .featured-article {
+        height: 300px;
+    }
+}

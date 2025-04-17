@@ -1,4 +1,28 @@
-venv/
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.sqlite3
+
+# Django specific
+/staticfiles/
+/media/
+/db.sqlite3
+
+# Virtual environments
+venv/
 .env
+*.env
+
+pet
+pet.pub
+
+labs/
+
+# IDE/editor stuff
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
